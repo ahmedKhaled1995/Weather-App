@@ -1,0 +1,9 @@
+1) When using hbs template engine, but your html templates in a root folder named "views", see this project for example.
+2) If we want to change the name of folder "views" (or location), we do the following:
+    1) Assume we want to change the name of the "views" folder to "templates" and templates in the root folder, so we code:
+
+        const viewsPath = path.join(__dirname, "../templates");
+        app.set("views", viewsPath); 
+
+3) __dirname  is the location where app.js is located . so it would be:  C:\Node js\Weather Server\Web Server\src
+4) 
