@@ -20,6 +20,10 @@ hbs.registerPartials(partialPath);
 app.use(express.static(publicStaticPathDirectory));           // used to set the default path for index.html             
                                                               // use it anyway even if you are using template engine, without it css and javascripts
                                                               // files will not load duo to MIME type error
+
+// Setup port for heroku and local port
+const port = process.env.PORT || 3000;
+
 app.get("/", (req, res) =>{
     res.render("index", {
         title: "Weather App",
@@ -95,6 +99,6 @@ app.get("/*", (req, res) =>{
     });
 });
 
-app.listen(3000, () => {
+app.listen(port, () => {
     console.log("Server started on port 3000");
 });
