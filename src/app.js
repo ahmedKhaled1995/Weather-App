@@ -61,26 +61,21 @@ app.get("/weather", (req, res) =>{
         });
         return;
     }
-    geoCode(address, (error, coordObj) => {
+    geoCode(address, (error, coordObjArray) => {
         if(error){
             res.send({
                 error
             });
             return;
         }
-        forecast(coordObj.latitude, coordObj.longitude, (error, tempObj) => {
+        forecast(coordObjArray, (error, tempObjArray) => {
             if(error){
                 res.send({
                     error
                 });
                 return;
             }
-            res.send({
-                temp: tempObj.temp,
-                description: tempObj.description,
-                address: coordObj.location
-                //name: "Ahmad Khaled"
-            });
+            res.send(tempObjArray);
         });
     });
 });

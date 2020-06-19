@@ -9,12 +9,15 @@ const geoCode = (location, callback) => {
             callback("Invalid location!", undefined);
             return;
         }
-        const dataObj = {
-            latitude: response.data.features[0].center[1],
-            longitude: response.data.features[0].center[0],
-            location: response.data.features[0].place_name
-        };
-        callback(undefined, dataObj);
+        let locationsOblectsArray = [];
+        for(let i = 0; i<response.data.features.length; i++){
+            locationsOblectsArray.push({
+                latitude: response.data.features[i].center[1],
+                longitude: response.data.features[i].center[0],
+                location: response.data.features[i].place_name
+            });
+        }
+        callback(undefined, locationsOblectsArray);
         return;
     }).catch((error) => {
         callback(error, undefined);
